@@ -17,6 +17,8 @@ async function loadQuiz() {
         if (!response.ok) throw new Error('Falha ao carregar as perguntas da API.');
 
         questions = await response.json();
+        questions.sort((a, b) => a.id - b.id);
+        
         if (questions.length === 0) throw new Error('Nenhuma pergunta recebida.');
 
         displayCurrentQuestion();
